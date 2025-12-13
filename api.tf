@@ -14,7 +14,7 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [ aws_security_group.apisg.id ]
 
   user_data = file("${path.module}/user-data.sh")
-  user_data_replace_on_change = false
+  user_data_replace_on_change = true
 
   iam_instance_profile = aws_iam_instance_profile.s3_profile.name
   
