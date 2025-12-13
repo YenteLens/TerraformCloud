@@ -5,12 +5,13 @@ data "aws_vpc" "default" {
 resource "aws_instance" "example" {
   ami           = "ami-049442a6cf8319180"
   instance_type = "t3.micro"
-  vpc_security_group_ids = [ aws_security_group.appsg.id ]
+  vpc_security_group_ids = [ aws_security_group.apisg.id ]
 
-  #user_data = file("${path.module/user-data.sh}")
+  user_data = file("${path.module}/user-data.sh")
+  user_data_replace_on_change = true
 }
 
-resource "aws_security_group" "appsg" {
+resource "aws_security_group" "apisg" {
   name = "appsg"
   description = "allow http and mysql"
   vpc_id = data.aws_vpc.default.id
@@ -22,7 +23,7 @@ resource "aws_security_group_rule" "allowhttp" {
   from_port = 80 
   to_port = 80
   protocol = "tcp"
-  security_group_id = aws_security_group.appsg.id
+  security_group_id = aws_security_group.apisg.id
   cidr_blocks = ["0.0.0.0/0"]
     
 }
@@ -32,27 +33,27 @@ resource "aws_security_group_rule" "allowmysql" {
   from_port = 3306 
   to_port = 3306
   protocol = "tcp"
-  security_group_id = aws_security_group.appsg.id
+  security_group_id = aws_security_group.apisg.id
   cidr_blocks = ["0.0.0.0/0"]
   
 }
 
-resource "aws_security_group_rule" "allowmyssh" {
+resource "aws_security_group_rule" "allowssh" {
   type = "ingress"
   from_port = 22
   to_port = 22
   protocol = "tcp"
-  security_group_id = aws_security_group.appsg.id
+  security_group_id = aws_security_group.apisg.id
   cidr_blocks = ["0.0.0.0/0"]
   
 }
 
-resource "aws_security_group_rule" "allowmyall" {
+resource "aws_security_group_rule" "allowall" {
   type = "egress"
   from_port = 0
   to_port = 0
   protocol = "-1"
-  security_group_id = aws_security_group.appsg.id
+  security_group_id = aws_security_group.apisg.id
   cidr_blocks = ["0.0.0.0/0"]
   
 }
