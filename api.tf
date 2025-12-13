@@ -6,6 +6,8 @@ resource "aws_instance" "example" {
   ami           = "ami-049442a6cf8319180"
   instance_type = "t3.micro"
   vpc_security_group_ids = [ aws_security_group.appsg.id ]
+
+  #user_data = file("${path.module/user-data.sh}")
 }
 
 resource "aws_security_group" "appsg" {
@@ -40,6 +42,16 @@ resource "aws_security_group_rule" "allowmyssh" {
   from_port = 22
   to_port = 22
   protocol = "tcp"
+  security_group_id = aws_security_group.appsg.id
+  cidr_blocks = ["0.0.0.0/0"]
+  
+}
+
+resource "aws_security_group_rule" "allowmyall" {
+  type = "egress"
+  from_port = 0
+  to_port = 0
+  protocol = "-1"
   security_group_id = aws_security_group.appsg.id
   cidr_blocks = ["0.0.0.0/0"]
   
