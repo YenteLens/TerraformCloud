@@ -2,6 +2,12 @@ data "aws_vpc" "default" {
   default = true
 }
 
+resource "aws_iam_instance_profile" "s3_profile" {
+  name = "s3-instance-profile"
+  role = aws_iam_role.s3_full_access_role.name
+  
+}
+
 resource "aws_instance" "example" {
   ami           = "ami-049442a6cf8319180"
   instance_type = "t3.micro"
@@ -9,6 +15,9 @@ resource "aws_instance" "example" {
 
   user_data = file("${path.module}/user-data.sh")
   user_data_replace_on_change = true
+
+  iam_instance_profile = aws_iam_instance_profile.s3_profile.name
+  
 }
 
 resource "aws_security_group" "apisg" {
