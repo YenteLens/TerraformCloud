@@ -10,9 +10,9 @@
 - create project dir
 - git init
 - set the remote repo up and connect to local repository
+- create main.tf to declare provider
 - run terraform init
 - run aws configure and enter your aws admin credentials
-- create main.tf to declare provider
 
 ## What needs to be made
 
