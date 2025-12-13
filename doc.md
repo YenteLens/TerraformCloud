@@ -17,8 +17,8 @@
 ## What needs to be made
 
 - 2 applications
- - API: to upload files to. files are stored with a name and description
- - APP: app that lists all files and allows you to download them
+    - API: to upload files to. files are stored with a name and description
+    - APP: app that lists all files and allows you to download them
 
 ### API
 
