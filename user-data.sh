@@ -11,6 +11,7 @@ sudo ./aws/install
 sudo rm /var/www/html/index.html
 sudo aws s3 cp s3://yentelensfinalproject/upload.php /var/www/html/
 sudo aws s3 cp s3://yentelensfinalproject/index.html /var/www/html/
+sudo aws s3 cp s3://yentelensfinalproject/list.html /var/www/html/
 
 sudo mysql -u root -prootpass <<EOF
 CREATE DATABASE uploaddb;
