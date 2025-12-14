@@ -1,0 +1,14 @@
+image:
+  name: hashicorp/terraform:1.6
+  entrypoint: [""]
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - terraform init
+    - terraform apply -auto-approve
+  only:
+    - main
