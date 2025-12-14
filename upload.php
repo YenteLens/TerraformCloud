@@ -1,16 +1,18 @@
 <?php
 $bucket = "yentelenspublic";
-$uploadDir = "/tmp/";
 $fileName = basename($_FILES["file"]["name"]);
 $tmpPath = $_FILES["file"]["tmp_name"];
 
-// Safely escape all paths
+/* NEW: get description */
+$description = $_POST["description"] ?? "";
+
+// Escape shell arguments (S3 upload only)
 $tmpPathEscaped = escapeshellarg($tmpPath);
-$fileNameEscaped = escapeshellarg($fileName);
-$bucketEscaped   = escapeshellarg($bucket);
+$fileNameEscapedShell = escapeshellarg($fileName);
+$bucketEscaped = escapeshellarg($bucket);
 
 /* Upload to S3 */
-$cmd = "aws s3 cp $tmpPathEscaped s3://$bucketEscaped/$fileNameEscaped 2>&1";
+$cmd = "aws s3 cp $tmpPathEscaped s3://$bucketEscaped/$fileNameEscapedShell 2>&1";
 exec($cmd, $output, $result);
 
 if ($result !== 0) {
@@ -19,14 +21,16 @@ if ($result !== 0) {
     die();
 }
 
-/* Save filename to MySQL */
+/* Save filename + description to MySQL */
 $mysqli = new mysqli("localhost", "uploaduser", "uploadpass", "uploaddb");
 if ($mysqli->connect_error) {
     die("DB connection failed");
 }
 
-$stmt = $mysqli->prepare("INSERT INTO uploads (filename) VALUES (?)");
-$stmt->bind_param("s", $fileNameEscaped);
+$stmt = $mysqli->prepare(
+    "INSERT INTO uploads (filename, description) VALUES (?, ?)"
+);
+$stmt->bind_param("ss", $fileName, $description);
 $stmt->execute();
 
 echo "File uploaded successfully";
