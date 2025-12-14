@@ -7,5 +7,8 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 sudo apt install unzip -y
 unzip awscliv2.zip
 sudo ./aws/install
-echo "this is another test with userdata" > /var/www/html/index.html
+
+sudo rm /var/www/html/index.html
+sudo aws s3 cp s3://yentelensfinalproject/upload.php /var/www/html/
+sudo aws s3 cp s3://yentelensfinalproject/index.html /var/www/html/
 sudo systemctl restart apache2.service
