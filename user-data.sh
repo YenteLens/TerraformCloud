@@ -22,6 +22,7 @@ USE uploaddb;
 CREATE TABLE uploads (
   id INT AUTO_INCREMENT PRIMARY KEY,
   filename VARCHAR(255),
+  description TEXT,
   uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 EOF
