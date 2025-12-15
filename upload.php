@@ -9,7 +9,7 @@ $description = $_POST["description"] ?? "";
 // Escape shell arguments (S3 upload only)
 $tmpPathEscaped = escapeshellarg($tmpPath);
 $fileNameEscapedShell = escapeshellarg($fileName);
-$bucketEscaped = escapeshellarg($bucket);
+$bucketEscaped = $bucket;
 
 /* Upload to S3 */
 $cmd = "aws s3 cp $tmpPathEscaped s3://$bucketEscaped/$fileNameEscapedShell 2>&1";
