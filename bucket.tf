@@ -59,9 +59,9 @@ resource "aws_s3_bucket_object" "index_html" {
   source = "./index.html"
   acl = "private"
 }
-resource "aws_s3_bucket_object" "terraform_tfstate" {
-  key = "terraform.tfstate"
-  bucket = aws_s3_bucket.yentelenspublic.id
-  source = "./terraform.tfstate"
-  acl = "private"
-}
+#resource "aws_s3_bucket_object" "terraform_tfstate" {
+#  key = "terraform.tfstate"
+#  bucket = aws_s3_bucket.yentelenspublic.id
+#  source = "./terraform.tfstate"
+#  acl = "private"
+#}
