@@ -20,7 +20,7 @@ resource "aws_instance" "example" {
   iam_instance_profile = aws_iam_instance_profile.s3_profile.name
 
   tags = {
-    Name = "mainserver"
+    Name = "anotherone"
   }
   
 }

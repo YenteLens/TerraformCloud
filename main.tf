@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "yentelensfinalproject"
+    bucket = "yentelenspublic"
     key    = "terraform.tfstate"
     region = "eu-west-1"
   }
