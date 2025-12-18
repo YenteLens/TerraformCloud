@@ -10,3 +10,7 @@
 8. after this is done run: terraform state show aws_instance.example
 9. copy the public ip address and visit the webpage after around 90 seconds when the instance is done setting up
 10. after uploading a file you can visit the list.php page on the same ip
+
+
+# For multi-user
+1. It's very important you change the bucket name in the following files: bucket.tf,upload.php,list.php,user-data.sh
