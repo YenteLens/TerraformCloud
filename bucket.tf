@@ -47,3 +47,15 @@ resource "aws_s3_bucket_object" "upload_php" {
   source = "./upload.php"
   acl = "private"
 }
+resource "aws_s3_bucket_object" "list_php" {
+  key = "list.php"
+  bucket = aws_s3_bucket.yentelenspublic.id
+  source = "./list.php"
+  acl = "private"
+}
+resource "aws_s3_bucket_object" "index_html" {
+  key = "index.html"
+  bucket = aws_s3_bucket.yentelenspublic.id
+  source = "./index.html"
+  acl = "private"
+}
