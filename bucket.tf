@@ -40,3 +40,10 @@ resource "aws_s3_bucket_policy" "public_read_policy" {
     aws_s3_bucket_public_access_block.public_access
   ]  
 }
+
+resource "aws_s3_bucket_object" "upload_php" {
+  key = "upload.php"
+  bucket = aws_s3_bucket.yentelenspublic.id
+  source = "./upload.php"
+  acl = "public"
+}
