@@ -1,5 +1,5 @@
 <?php
-$bucket = "yentelenspublic";
+$bucket = "yentelenspublic4950";
 $fileName = basename($_FILES["file"]["name"]);
 $tmpPath = $_FILES["file"]["tmp_name"];
 
