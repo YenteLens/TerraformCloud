@@ -45,5 +45,5 @@ resource "aws_s3_bucket_object" "upload_php" {
   key = "upload.php"
   bucket = aws_s3_bucket.yentelenspublic.id
   source = "./upload.php"
-  acl = "public"
+  acl = "private"
 }
