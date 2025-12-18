@@ -1,5 +1,5 @@
 <?php
-$bucket = "yentelenspublic";
+$bucket = "yentelenspublic4950";
 
 /* Connect to MySQL */
 $mysqli = new mysqli("localhost", "uploaduser", "uploadpass", "uploaddb");

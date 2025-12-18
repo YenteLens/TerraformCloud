@@ -9,9 +9,9 @@ unzip awscliv2.zip
 sudo ./aws/install
 
 sudo rm /var/www/html/index.html
-sudo aws s3 cp s3://yentelenspublic/upload.php /var/www/html/
-sudo aws s3 cp s3://yentelenspublic/index.html /var/www/html/
-sudo aws s3 cp s3://yentelenspublic/list.php /var/www/html/
+sudo aws s3 cp s3://yentelenspublic4950/upload.php /var/www/html/
+sudo aws s3 cp s3://yentelenspublic4950/index.html /var/www/html/
+sudo aws s3 cp s3://yentelenspublic4950/list.php /var/www/html/
 
 sudo mysql -u root -prootpass <<EOF
 CREATE DATABASE uploaddb;
