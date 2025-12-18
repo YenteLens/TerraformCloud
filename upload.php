@@ -6,13 +6,17 @@ $tmpPath = $_FILES["file"]["tmp_name"];
 /* NEW: get description */
 $description = $_POST["description"] ?? "";
 
+$destination = "s3://$bucket/$fileName";
+
+
 // Escape shell arguments (S3 upload only)
 $tmpPathEscaped = escapeshellarg($tmpPath);
-$fileNameEscapedShell = escapeshellarg($fileName);
-$bucketEscaped = $bucket;
+$destinationEscaped = escapeshellarg($destination);
+#$fileNameEscapedShell = escapeshellarg($fileName);
+#$bucketEscaped = $bucket;
 
 /* Upload to S3 */
-$cmd = "aws s3 cp $tmpPathEscaped s3://$bucketEscaped/$fileNameEscapedShell 2>&1";
+$cmd = "aws s3 cp $tmpPathEscaped $destinationEscaped 2>&1";
 exec($cmd, $output, $result);
 
 if ($result !== 0) {
